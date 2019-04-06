@@ -21,13 +21,21 @@ public class CandidateSkill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int candidateId;
+    @ManyToOne
+    @JoinColumn(name = "candidate_id", referencedColumnName = "id", nullable = false)
+    private Candidate candidate;
 
-    private int skillId;
+    @ManyToOne
+    @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false)
+    private Skill skill;
 
-    private int skillExperienceId;
+    @ManyToOne
+    @JoinColumn(name = "skill_experience_id", referencedColumnName = "id", nullable = false)
+    private SkillExperience skillExperience;
 
-    private int skillUsageId;
+    @ManyToOne
+    @JoinColumn(name = "skill_usage_id", referencedColumnName = "id", nullable = false)
+    private SkillUsage skillUsage;
 
     private boolean certified;
 

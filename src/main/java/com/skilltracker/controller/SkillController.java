@@ -63,7 +63,7 @@ public class SkillController {
     }
 
     //Author -RameshKumar
-    @PostMapping(value = "/saveSkillTracker", produces = "application/json")
+/*    @PostMapping(value = "/saveSkillTracker", produces = "application/json")
     public ResponseEntity saveSkillTracker(@RequestParam Integer candidateId, @RequestParam Integer skillId,
                                            @RequestParam Integer skillExperienceId, @RequestParam Integer skillUsageId, @RequestParam boolean certified) {
         if (candidateId != null && skillId != null && skillExperienceId != null && skillUsageId != null) {
@@ -77,7 +77,7 @@ public class SkillController {
             throw new RestClientException("All the requeried Id need to available to save the Candidate Skills");
         }
         return ResponseEntity.ok().build();
-    }
+    }*/
 
 }
 
