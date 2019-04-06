@@ -4,6 +4,7 @@ import com.skilltracker.dto.SkillDto;
 import com.skilltracker.model.Skill;
 import com.skilltracker.model.SkillType;
 import com.skilltracker.service.SkillService;
+import com.skilltracker.service.SkillTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,12 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/skills")
 public class SkillController {
+
     @Autowired
     SkillService skillService;
 
-
+    @Autowired
+    SkillTypeService skillTypeService;
 
     @GetMapping(path = "/{skillType}")
     public ResponseEntity<List<Skill>> getSkills(@PathVariable Long skillTypeId){
@@ -35,7 +38,7 @@ public class SkillController {
     //Author -- RameshKumar
     @GetMapping(value = "/getSkillType")
     public List<SkillType> getSkillType() {
-        List<SkillType> skillType = skillService.getAll();
+        List<SkillType> skillType = skillTypeService.getAllSkillTypes();
         if (null != skillType) {
             return skillType;
         } else {
