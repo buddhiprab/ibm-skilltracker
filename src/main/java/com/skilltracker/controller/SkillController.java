@@ -29,7 +29,7 @@ public class SkillController {
     SkillTypeService skillTypeService;
 
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<SkillDto>> getAllSkills() {
 
         List<SkillDto> skills = skillService.getAllSkills();
@@ -60,23 +60,6 @@ public class SkillController {
         } else {
             throw new RestClientException("Skill Type Doesn't Found");
         }
-    }
-
-    //Author -RameshKumar
-    @PostMapping(value = "/saveSkillTracker", produces = "application/json")
-    public ResponseEntity saveSkillTracker(@RequestParam Integer candidateId, @RequestParam Integer skillId,
-                                           @RequestParam Integer skillExperienceId, @RequestParam Integer skillUsageId, @RequestParam boolean certified) {
-        if (candidateId != null && skillId != null && skillExperienceId != null && skillUsageId != null) {
-            CandidateSkill candidateSkill = new CandidateSkill();
-            candidateSkill.setCandidateId(candidateId);
-            candidateSkill.setSkillId(skillId);
-            candidateSkill.setSkillExperienceId(skillExperienceId);
-            candidateSkill.setSkillUsageId(skillUsageId);
-            candidateRepository.save(candidateSkill);
-        } else {
-            throw new RestClientException("All the requeried Id need to available to save the Candidate Skills");
-        }
-        return ResponseEntity.ok().build();
     }
 
 }
