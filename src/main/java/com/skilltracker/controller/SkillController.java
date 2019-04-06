@@ -21,24 +21,26 @@ public class SkillController {
 
     @Autowired
     SkillService skillService;
+
     @Autowired
     CandidateRepository candidateRepository;
+
     @Autowired
     SkillTypeService skillTypeService;
 
     //Author - Buddhi
     @GetMapping("/{skillTypeId}")
-    public ResponseEntity<List<Skill>> getSkills(@PathVariable int skillTypeId){
+    public ResponseEntity<List<Skill>> getSkills(@PathVariable int skillTypeId) {
 
         List<Skill> skills = skillService.getSkillsByType(skillTypeId);
-        if(skills.isEmpty()){
+        if (skills.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<List<Skill>>(skills,HttpStatus.OK);
+        return new ResponseEntity<List<Skill>>(skills, HttpStatus.OK);
     }
 
     //Author -- RameshKumar
-    @GetMapping(path= "/getSkillTypes")
+    @GetMapping(path = "/getSkillTypes")
     public List<SkillType> getSkillTypes() {
         List<SkillType> skillType = skillTypeService.getAllSkillTypes();
         if (null != skillType) {
