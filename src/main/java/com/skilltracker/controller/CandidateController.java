@@ -37,7 +37,7 @@ public class CandidateController {
             SkillExperience skillExperience = skillExperienceRepository.findById(skillExperienceId).orElse(null);
             SkillUsage skillUsage = skillUsageRepository.findById(skillUsageId).orElse(null);
 
-            CandidateSkill candidateSkill = new CandidateSkill().builder()
+            CandidateSkill candidateSkill = CandidateSkill.builder()
                     .candidate(candidate)
                     .skill(skill)
                     .skillExperience(skillExperience)

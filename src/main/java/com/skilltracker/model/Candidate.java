@@ -23,8 +23,8 @@ public class Candidate {
     private int id;
 
     @Column(name = "name")
-    private int name;
+    private String name;
 
-    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
-    Set<CandidateSkill> candidateSkillSet = new HashSet<>();
+//    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+//    Set<CandidateSkill> candidateSkillSet = new HashSet<>();
 }
