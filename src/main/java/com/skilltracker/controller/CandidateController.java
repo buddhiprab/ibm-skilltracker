@@ -4,6 +4,7 @@ package com.skilltracker.controller;
 import com.skilltracker.dto.CandidateSkillDto;
 import com.skilltracker.model.*;
 import com.skilltracker.repository.*;
+import com.skilltracker.service.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,12 @@ import org.springframework.web.client.RestClientException;
 @RestController
 @RequestMapping(path = "/candidate")
 public class CandidateController {
+
+
+    @Autowired
+    CandidateService candidateService;
+
+
     @Autowired
     CandidateRepository candidateRepository;
     @Autowired
@@ -53,6 +60,15 @@ public class CandidateController {
 
 
 
+    @GetMapping("/{candidateId}")
+    public Candidate getCandidate(@PathVariable Integer candidateId){
+        if (null != candidateId) {
+            return candidateService.getCandidate(candidateId);
+        } else {
+            throw new RestClientException("Skill Type Doesn't Found");
+        }
+
+    }
 
 
 }
