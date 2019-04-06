@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,9 @@ public class SkillController {
     @Autowired
     SkillService skillService;
 
-    @GetMapping(path = "")
-    public ResponseEntity<List<Skill>> getSkills(){
-        List<Skill> skills = skillService.getSkillsByType();
+    @GetMapping(path = "/{skillType}")
+    public ResponseEntity<List<Skill>> getSkills(@PathVariable String skillType){
+        List<Skill> skills = skillService.getSkillsByType(skillType);
         if(skills.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
