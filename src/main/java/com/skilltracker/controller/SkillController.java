@@ -28,6 +28,18 @@ public class SkillController {
     @Autowired
     SkillTypeService skillTypeService;
 
+
+    @GetMapping("/")
+    public ResponseEntity<List<SkillDto>> getAllSkills() {
+
+        List<SkillDto> skills = skillService.getAllSkills();
+        if (skills.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<SkillDto>>(skills, HttpStatus.OK);
+    }
+
+
     //Author - Buddhi
     @GetMapping("/{skillTypeId}")
     public ResponseEntity<List<Skill>> getSkills(@PathVariable int skillTypeId) {
