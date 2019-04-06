@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -64,10 +65,23 @@ public class CandidateController {
 
 
     @GetMapping("/{candidateId}")
-    public ResponseEntity<List<CandidateSkill>> getCandidate(@PathVariable Integer candidateId){
+    public ResponseEntity<List<CandidateSkillDto>> getCandidate(@PathVariable Integer candidateId){
         Candidate candidate = candidateRepository.findById(candidateId).orElse(null);
         List<CandidateSkill> candidateSkills = candidateService.getCandidateSkills(candidate);
-        return new ResponseEntity<List<CandidateSkill>>(candidateSkills, HttpStatus.OK);
+        List<CandidateSkillDto> candidateSkillDtos = new ArrayList<>();
+        for(CandidateSkill candidateSkill:candidateSkills){
+            CandidateSkillDto candidateSkillDto = CandidateSkillDto.builder()
+                    .candidateId(candidateSkill.getCandidate().getId())
+                    .skillId(candidateSkill.getSkill().getId())
+                    .skillLabel(candidateSkill.getSkill().getTitle())
+                    .skillExperienceId(candidateSkill.getSkillExperience().getId())
+                    .skillExperienceLabel(candidateSkill.getSkillExperience().getYears())
+                    .skillUsageId(candidateSkill.getSkillUsage().getId())
+                    .skillUsageLabel(candidateSkill.getSkillUsage().getUsage())
+                    .certified(candidateSkill.isCertified()).build();
+            candidateSkillDtos.add(candidateSkillDto);
+        }
+        return new ResponseEntity<List<CandidateSkillDto>>(candidateSkillDtos, HttpStatus.OK);
     }
 
 

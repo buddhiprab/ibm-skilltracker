@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 public class CandidateSkillDto {
     private int candidateId;
     private int skillId;
+    private String skillLabel;
     private int skillExperienceId;
+    private String skillExperienceLabel;
     private int skillUsageId;
+    private String skillUsageLabel;
     private boolean certified;
 }
