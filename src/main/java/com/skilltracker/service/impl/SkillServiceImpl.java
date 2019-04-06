@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SkillServiceImpl implements SkillService {
@@ -32,7 +33,19 @@ public class SkillServiceImpl implements SkillService {
 
     @Override
     public List<SkillDto> getAllSkills() {
-        return null;
+
+
+        List<SkillDto> allSkills = skillRepository.getAllSkills().stream().map(this::transformEntityToDto).collect(Collectors.toList());
+
+
+        return allSkills;
+    }
+
+
+    private SkillDto transformEntityToDto(Skill skill){
+        SkillDto skillDto = new SkillDto();
+        return skillDto;
+
     }
 
 
