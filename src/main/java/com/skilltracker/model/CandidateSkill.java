@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,8 +22,9 @@ public class CandidateSkill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "candidate_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "candidate_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Candidate candidate;
 
     @ManyToOne
