@@ -11,5 +11,5 @@ public interface CandidateService {
 
     Candidate saveCandidateSkills(CandidateSkill candidateSkill);
 
-    List<CandidateSkill> getCandidateSkills(Integer candidateId);
+    List<CandidateSkill> getCandidateSkills(Candidate candidate);
 }

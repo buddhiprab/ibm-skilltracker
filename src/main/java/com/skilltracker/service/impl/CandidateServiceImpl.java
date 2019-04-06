@@ -28,7 +28,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public List<CandidateSkill> getCandidateSkills(Integer candidateId) {
-        return candidateSkillRepository.findByCandidate(candidateId);
+    public List<CandidateSkill> getCandidateSkills(Candidate candidate) {
+        return candidateSkillRepository.findByCandidate(candidate);
     }
 }

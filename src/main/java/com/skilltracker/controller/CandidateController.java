@@ -65,7 +65,8 @@ public class CandidateController {
 
     @GetMapping("/{candidateId}")
     public ResponseEntity<List<CandidateSkill>> getCandidate(@PathVariable Integer candidateId){
-        List<CandidateSkill> candidateSkills = candidateService.getCandidateSkills(candidateId);
+        Candidate candidate = candidateRepository.findById(candidateId).orElse(null);
+        List<CandidateSkill> candidateSkills = candidateService.getCandidateSkills(candidate);
         return new ResponseEntity<List<CandidateSkill>>(candidateSkills, HttpStatus.OK);
     }
 
