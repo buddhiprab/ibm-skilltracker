@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Builder
 @Table(name = "tblCandidateSkill")
-public class CandidateSkill {
+public class CandidateSkill implements Serializable {
 
 
     @Id
