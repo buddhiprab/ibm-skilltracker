@@ -35,7 +35,7 @@ public class SkillServiceImpl implements SkillService {
     public List<SkillDto> getAllSkills() {
 
 
-        List<SkillDto> allSkills = skillRepository.getAllSkills().stream().map(this::transformEntityToDto).collect(Collectors.toList());
+        List<SkillDto> allSkills = skillRepository.findAll().stream().map(this::transformEntityToDto).collect(Collectors.toList());
 
 
         return allSkills;
@@ -43,9 +43,11 @@ public class SkillServiceImpl implements SkillService {
 
 
     private SkillDto transformEntityToDto(Skill skill){
-        SkillDto skillDto = new SkillDto();
+        SkillDto skillDto = SkillDto.builder()
+                .skillId(skill.getId())
+                .skillTitle(skill.getTitle())
+                .skillTypeTitle(skill.getSkillType().getTitle()).build();
         return skillDto;
-
     }
 
 

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Builder
-@Table(name = "candidate")
+@Table(name = "tblCandidate")
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
