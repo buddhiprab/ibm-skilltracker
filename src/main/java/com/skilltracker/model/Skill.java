@@ -22,4 +22,5 @@ public class Skill {
     private int skillTypeId;
     @Column(name = "skill_title")
     private String skillTitle;
+    private String title;
 }

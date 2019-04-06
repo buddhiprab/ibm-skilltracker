@@ -14,14 +14,21 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Builder
-@Table(name = "skillType")
-public class SkillType {
+@Table(name = "candidateSkill")
+public class CandidateSkill {
 
 
     private int id;
 
-    private String title;
+    private int candidateId;
 
+    private int skillId;
+
+    private int skillExperienceId;
+
+    private int skillUsageId;
+
+    private boolean certified;
 
 
 }
