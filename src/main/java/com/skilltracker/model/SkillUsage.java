@@ -20,6 +20,4 @@ public class SkillUsage {
     private int id;
 
     private String usage;
-
-
 }

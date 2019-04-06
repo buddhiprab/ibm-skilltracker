@@ -20,7 +20,4 @@ public class SkillType {
     private int id;
 
     private String title;
-
-
-
 }
