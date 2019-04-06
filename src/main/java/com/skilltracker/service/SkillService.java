@@ -10,7 +10,7 @@ public interface SkillService {
 
      List<SkillDto> getAllSkills();
 
-    List<Skill> getSkillsByType(Long skillTypeId);
+    List<Skill> getSkillsByType(int skillTypeId);
     List<SkillType> getAll();
 
 }

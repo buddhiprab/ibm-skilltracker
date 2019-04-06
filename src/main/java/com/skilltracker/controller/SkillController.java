@@ -1,16 +1,15 @@
 package com.skilltracker.controller;
 
 import com.skilltracker.dto.SkillDto;
+import com.skilltracker.model.CandidateSkill;
 import com.skilltracker.model.Skill;
 import com.skilltracker.model.SkillType;
+import com.skilltracker.repository.CandidateRepository;
 import com.skilltracker.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
@@ -20,11 +19,12 @@ import java.util.List;
 public class SkillController {
     @Autowired
     SkillService skillService;
+    @Autowired
+    CandidateRepository candidateRepository;
 
-
-
-    @GetMapping(path = "/{skillType}")
-    public ResponseEntity<List<Skill>> getSkills(@PathVariable Long skillTypeId){
+    //Author - Buddhi
+    @GetMapping("/{skillTypeId}")
+    public ResponseEntity<List<Skill>> getSkills(@PathVariable int skillTypeId){
         List<Skill> skills = skillService.getSkillsByType(skillTypeId);
         if(skills.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -33,7 +33,7 @@ public class SkillController {
     }
 
     //Author -- RameshKumar
-    @GetMapping(value = "/getSkillType")
+    @GetMapping(path= "/getSkillType")
     public List<SkillType> getSkillType() {
         List<SkillType> skillType = skillService.getAll();
         if (null != skillType) {
@@ -43,14 +43,21 @@ public class SkillController {
         }
     }
 
-
-
-    @GetMapping(path = "/{skillType}")
-    public ResponseEntity<List<SkillDto>> getAllSkills(){
-        List<SkillDto> skills = skillService.getAllSkills();
-        if(skills.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    //Author -RameshKumar
+    @PostMapping(value = "/saveSkillTracker", produces = "application/json")
+    public ResponseEntity saveSkillTracker(@RequestParam Integer candidateId, @RequestParam Integer skillId,
+                                           @RequestParam Integer skillExperienceId, @RequestParam Integer skillUsageId, @RequestParam boolean certified) {
+        if (candidateId != null && skillId != null && skillExperienceId != null && skillUsageId != null) {
+            CandidateSkill candidateSkill = new CandidateSkill();
+            candidateSkill.setCandidateId(candidateId);
+            candidateSkill.setSkillId(skillId);
+            candidateSkill.setSkillExperienceId(skillExperienceId);
+            candidateSkill.setSkillUsageId(skillUsageId);
+            candidateRepository.save(candidateSkill);
+        } else {
+            throw new RestClientException("All the requeried Id need to available to save the Candidate Skills");
         }
-        return new ResponseEntity<List<SkillDto>>(skills,HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
+
 }

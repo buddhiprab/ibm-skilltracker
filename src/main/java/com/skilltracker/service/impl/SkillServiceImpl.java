@@ -21,7 +21,7 @@ public class SkillServiceImpl implements SkillService {
     @Autowired
     SkillTypeRepository skillTypeRepository;
 
-    public List<Skill> getSkillsByType(Long skillTypeId){
+    public List<Skill> getSkillsByType(int skillTypeId){
         return skillRepository.findBySkillTypeId(skillTypeId);
     }
 
