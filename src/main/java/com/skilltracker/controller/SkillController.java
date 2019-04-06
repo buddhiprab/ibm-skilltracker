@@ -61,6 +61,5 @@ public class SkillController {
             throw new RestClientException("Skill Type Doesn't Found");
         }
     }
-
 }
 

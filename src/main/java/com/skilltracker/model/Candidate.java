@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,9 +17,14 @@ import javax.persistence.*;
 @Builder
 @Table(name = "tblCandidate")
 public class Candidate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "name")
     private int name;
+
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+    Set<CandidateSkill> candidateSkillSet = new HashSet<>();
 }
