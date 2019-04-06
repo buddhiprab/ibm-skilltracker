@@ -20,7 +20,7 @@ public class SkillType {
 
     private int id;
 
-    private String skillTypeTitle;
+    private String title;
 
 
 

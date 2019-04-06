@@ -22,7 +22,7 @@ public class Skill {
 
     private int skillTypeId;
 
-    private String skillTitle;
+    private String title;
 
 
 }
