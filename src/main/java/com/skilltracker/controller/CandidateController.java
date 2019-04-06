@@ -63,13 +63,12 @@ public class CandidateController {
     }
 
 
-
     @GetMapping("/{candidateId}")
-    public ResponseEntity<List<CandidateSkillDto>> getCandidate(@PathVariable Integer candidateId){
+    public ResponseEntity<List<CandidateSkillDto>> getCandidate(@PathVariable Integer candidateId) {
         Candidate candidate = candidateRepository.findById(candidateId).orElse(null);
         List<CandidateSkill> candidateSkills = candidateService.getCandidateSkills(candidate);
         List<CandidateSkillDto> candidateSkillDtos = new ArrayList<>();
-        for(CandidateSkill candidateSkill:candidateSkills){
+        for (CandidateSkill candidateSkill : candidateSkills) {
             CandidateSkillDto candidateSkillDto = CandidateSkillDto.builder()
                     .candidateId(candidateSkill.getCandidate().getId())
                     .skillId(candidateSkill.getSkill().getId())
@@ -83,6 +82,10 @@ public class CandidateController {
         }
         return new ResponseEntity<List<CandidateSkillDto>>(candidateSkillDtos, HttpStatus.OK);
     }
+
+//public Candidate getCandidate(@PathVariable Integer candidateId){
+//    return candidateService.getCandidate(candidateId);
+//    }
 
 
 }

@@ -26,6 +26,9 @@ public class CandidateSkill implements Serializable {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "candidate_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+/*    @JsonBackReference
+    @JsonIgnore
+    @Basic(fetch = FetchType.LAZY)*/
     private Candidate candidate;
 
     @ManyToOne
@@ -41,6 +44,5 @@ public class CandidateSkill implements Serializable {
     private SkillUsage skillUsage;
 
     private boolean certified;
-
 
 }

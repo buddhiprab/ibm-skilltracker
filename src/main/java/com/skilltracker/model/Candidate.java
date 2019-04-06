@@ -1,12 +1,16 @@
 package com.skilltracker.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -26,4 +30,10 @@ public class Candidate implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+/*    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @JsonIgnore
+    @Basic(fetch = FetchType.LAZY)
+    List<CandidateSkill> candidateSkillSet = new ArrayList<>();*/
 }
