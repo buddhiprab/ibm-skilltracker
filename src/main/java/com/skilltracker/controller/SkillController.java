@@ -38,8 +38,8 @@ public class SkillController {
     }
 
     //Author -- RameshKumar
-    @GetMapping(path= "/getSkillType")
-    public List<SkillType> getSkillType() {
+    @GetMapping(path= "/getSkillTypes")
+    public List<SkillType> getSkillTypes() {
         List<SkillType> skillType = skillTypeService.getAllSkillTypes();
         if (null != skillType) {
             return skillType;
