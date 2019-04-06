@@ -19,8 +19,8 @@ public class SkillController {
     SkillService skillService;
 
     @GetMapping(path = "/{skillType}")
-    public ResponseEntity<List<Skill>> getSkills(@PathVariable String skillType){
-        List<Skill> skills = skillService.getSkillsByType(skillType);
+    public ResponseEntity<List<Skill>> getSkills(@PathVariable Long skillTypeId){
+        List<Skill> skills = skillService.getSkillsByType(skillTypeId);
         if(skills.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
