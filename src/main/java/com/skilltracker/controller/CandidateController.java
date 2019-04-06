@@ -26,9 +26,12 @@ public class CandidateController {
     //Author -RameshKumar
     @PostMapping(value = "/saveSkill", produces = "application/json")
     public ResponseEntity saveSkillTracker(@RequestBody CandidateSkillDto candidateSkillDto) {
-        int candidateId = candidateSkillDto.getCandidateId();
-        int skillId = candidateSkillDto.gesk
-        if (candidateId != null && skillId != null && skillExperienceId != null && skillUsageId != null) {
+        Integer candidateId = candidateSkillDto.getCandidateId();
+        Integer skillId = candidateSkillDto.getSkillId();
+        Integer skillExperienceId = candidateSkillDto.getSkillExperienceId();
+        Integer skillUsageId = candidateSkillDto.getSkillUsageId();
+        boolean certified = candidateSkillDto.isCertified();
+        if (candidateId != 0 && skillId != 0 && skillExperienceId != 0 && skillUsageId != 0) {
             Candidate candidate = candidateRepository.findById(candidateId).orElse(null);
             Skill skill = skillRepository.findById(skillId).orElse(null);
             SkillExperience skillExperience = skillExperienceRepository.findById(skillExperienceId).orElse(null);
