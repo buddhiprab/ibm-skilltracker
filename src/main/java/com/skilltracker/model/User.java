@@ -13,6 +13,6 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Builder
-@Table(name = "delivery")
+@Table(name = "user")
 public class User {
 }
