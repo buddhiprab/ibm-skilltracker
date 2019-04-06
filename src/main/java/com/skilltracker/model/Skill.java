@@ -15,12 +15,17 @@ import javax.persistence.*;
 @Builder
 @Table(name = "skill")
 public class Skill {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "skill_type_id")
-    private int skillTypeId;
-    @Column(name = "skill_title")
-    private String skillTitle;
+
+
+    @ManyToOne
+    @JoinColumn(name = "skill_type_id", referencedColumnName = "id", nullable = false)
+    private SkillType skillType;
+
+
+    @Column(name = "title")
     private String title;
 }
