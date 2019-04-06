@@ -1,5 +1,6 @@
 package com.skilltracker.controller;
 
+import com.skilltracker.dto.SkillDto;
 import com.skilltracker.model.Skill;
 import com.skilltracker.model.SkillType;
 import com.skilltracker.service.SkillService;
@@ -20,6 +21,8 @@ public class SkillController {
     @Autowired
     SkillService skillService;
 
+
+
     @GetMapping(path = "/{skillType}")
     public ResponseEntity<List<Skill>> getSkills(@PathVariable Long skillTypeId){
         List<Skill> skills = skillService.getSkillsByType(skillTypeId);
@@ -38,5 +41,16 @@ public class SkillController {
         } else {
             throw new RestClientException("Skill Type Doesn't Found");
         }
+    }
+
+
+
+    @GetMapping(path = "/{skillType}")
+    public ResponseEntity<List<SkillDto>> getAllSkills(){
+        List<SkillDto> skills = skillService.getAllSkills();
+        if(skills.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<SkillDto>>(skills,HttpStatus.OK);
     }
 }
