@@ -15,6 +15,8 @@ import javax.persistence.*;
 @Builder
 @Table(name = "tblCandidateSkill")
 public class CandidateSkill {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
